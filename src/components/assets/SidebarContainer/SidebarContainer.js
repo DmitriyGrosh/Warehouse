@@ -1,14 +1,18 @@
 import React from 'react';
-import {Drawer, List, ListItem, makeStyles} from '@material-ui/core';
+import {Drawer, List, ListItem, ListItemIcon, ListItemText, makeStyles} from '@material-ui/core';
+import HomeIcon from '@material-ui/icons/Home';
 import {NavLink} from "react-router-dom";
+import CreateIcon from '@material-ui/icons/Create';
+import UnarchiveIcon from '@material-ui/icons/Unarchive';
+import CreateNewFolderIcon from '@material-ui/icons/CreateNewFolder';
 
 const useStyles = makeStyles({
   drawer: {
-    width: 100,
+    width: 250,
     flexShrink: 0,
   },
   drawerPaper: {
-    width: 100,
+    width: 250,
     border: "none"
   }
 })
@@ -28,18 +32,35 @@ const SidebarContainer = ({children}) => {
     >
       <List>
         <NavLink to="/warehouses">
-          <ListItem>
-            Warehouses
+          <ListItem button>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Warehouses" />
           </ListItem>
         </NavLink>
         <NavLink to="/store">
-          <ListItem>
-            Unallocated warehouse
+          <ListItem button>
+            <ListItemIcon>
+              <UnarchiveIcon />
+            </ListItemIcon>
+            <ListItemText primary="Unallocated warehouse" />
           </ListItem>
         </NavLink>
-        <NavLink to="/">
-          <ListItem>
-            Create Products
+        <NavLink to="/create-products">
+          <ListItem button>
+            <ListItemIcon>
+              <CreateIcon />
+            </ListItemIcon>
+            <ListItemText primary="Create Products" />
+          </ListItem>
+        </NavLink>
+        <NavLink to="/add-warehouse">
+          <ListItem button>
+            <ListItemIcon>
+              <CreateNewFolderIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add Warehouse" />
           </ListItem>
         </NavLink>
       </List>

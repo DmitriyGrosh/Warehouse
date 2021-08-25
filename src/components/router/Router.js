@@ -3,14 +3,12 @@ import {Route, Switch} from "react-router-dom";
 
 import Warehouses from "../Warehouses";
 import OneWarehouse from "./OneWarehouse";
+import AddWarehouse from "../warehouses/AddWarehouse";
 
 const Router = () => {
 
   return (
     <Switch>
-      <Route exact path="/">
-        jjjj
-      </Route>
       <Route exact path="/warehouses">
         <Warehouses />
       </Route>
@@ -21,6 +19,12 @@ const Router = () => {
       </Route>
       <Route path='/warehouses/warehouse:id'>
         <OneWarehouse />
+      </Route>
+      <Route exact path="/create-products">
+        jjjj
+      </Route>
+      <Route exact path='/add-warehouse'>
+        <AddWarehouse />
       </Route>
     </Switch>
   )

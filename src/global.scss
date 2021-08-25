@@ -13,3 +13,12 @@ body,
 #root {
   display: flex;
 }
+
+a,
+a:active,
+a:visited,
+a img {
+  outline: none;
+  text-decoration: none;
+  color: black;
+}

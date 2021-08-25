@@ -7,7 +7,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper
+  Paper, Container
 } from "@material-ui/core";
 import {useSelector} from "react-redux";
 import { useHistory, useRouteMatch } from "react-router-dom";
@@ -37,6 +37,7 @@ const Warehouses = () => {
   }
 
   return (
+    <Container>
     <TableContainer
       className={classes.tableContainer}
       component={Paper}
@@ -85,6 +86,7 @@ const Warehouses = () => {
         </TableBody>
       </Table>
     </TableContainer>
+    </Container>
   )
 }
 
