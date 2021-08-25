@@ -1,0 +1,37 @@
+{
+  "plugins": [
+    "prettier",
+    "unicorn" ,
+    "import",
+    "babel",
+    "react",
+    "compat",
+    "promise"
+  ],
+  "extends": [
+    "airbnb",
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "no-var": "error",
+    "indent": "error",
+    "no-multi-spaces": "error",
+    "space-in-parens": "error",
+    "no-multiple-empty-lines": "error",
+    "prefer-const": "error",
+    "no-use-before-define": "error"
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "16.8"
+    },
+    "import/resolver": {
+      "node": {
+        "paths": ["."],
+        "extensions": [".js", ".ts", ".tsx"]
+      }
+    }
+  }
+}
