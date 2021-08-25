@@ -3,7 +3,6 @@ import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow}
 import { useParams } from 'react-router-dom';
 
 const OneWarehouse = () => {
-
   const  { id } = useParams();
   return (
     <TableContainer

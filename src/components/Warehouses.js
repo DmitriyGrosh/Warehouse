@@ -10,7 +10,7 @@ import {
   Paper
 } from "@material-ui/core";
 import {useSelector} from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 import {makeStyles} from "@material-ui/core"
 
 const useStyles = makeStyles({
@@ -28,9 +28,12 @@ const Warehouses = () => {
   const classes = useStyles()
   const warehouses = useSelector(state => state.warehouse)
   const history = useHistory()
+  
+  const { path } = useRouteMatch()
+  console.log('==========>path', path)
 
-  const handleRedirect = () => {
-    history.push('/warehouse')
+  const handleRedirect = (id) => {
+    history.push(`${path}/warehouse${id}`)
   }
 
   return (
@@ -60,7 +63,7 @@ const Warehouses = () => {
             warehouses?.map(e => {
               return (
                 <TableRow
-                  onClick={handleRedirect}
+                  onClick={() => handleRedirect(e.idWareHouse)}
                   className={classes.tableRow}
                 >
                   <TableCell>
