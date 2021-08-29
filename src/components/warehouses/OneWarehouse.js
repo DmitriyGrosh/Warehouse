@@ -9,12 +9,11 @@ import {
   TableRow
 } from "@material-ui/core";
 import {useSelector} from "react-redux";
-import { useHistory, useRouteMatch, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 const OneWarehouse = () => {
   const  { idWarehouse } = useParams();
   const history = useHistory();
-  const { path } = useRouteMatch();
   const warehouses = useSelector(state => state.warehouse);
   let products = [];
 
@@ -25,7 +24,7 @@ const OneWarehouse = () => {
   })
 
   const handleRedirect = (id) => {
-    history.push(`${path}/product${id}`)
+    history.push(`/products/product${id}`)
   };
 
   return (

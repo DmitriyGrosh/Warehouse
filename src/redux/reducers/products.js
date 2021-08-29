@@ -3,7 +3,7 @@ import {CREATE_PRODUCT, MOVE_PRODUCT} from "../types/products";
 const initialStateProducts =[
   {
   idProduct: 1,
-  wareHouseIds: [{idWarehouse: 1, count: 10},],
+  wareHouseIds: [{idWarehouse: 1, count: 10, nameOfWarehouse: 'name'},],
   name: 'name',
   totalCount: 10,
   size: 's',

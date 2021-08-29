@@ -4,7 +4,9 @@ import {Route, Switch} from "react-router-dom";
 import Warehouses from "../Warehouses";
 import AddWarehouse from "../warehouses/AddWarehouse";
 import CreateProduct from "../products/CreateProduct";
-import ProductRouter from "./ProductRouter";
+import OneWarehouse from "../warehouses/OneWarehouse";
+import ProductList from "../products/ProductList";
+import AllProducts from "../products/AllProducts";
 
 
 const Router = () => {
@@ -14,13 +16,14 @@ const Router = () => {
       <Route exact path="/warehouses">
         <Warehouses />
       </Route>
-      <Route exact path="/store">
-        <div>
-          cccc bbbbbbbbbbbb bbbbbbbbbbbb bbbbbbbbbbbb bbbbbbbbbbbb bbbbbbbbbbbb bbbbbbbbbbbb bbbbbbbbbbbb bbbbbbbbbbbb bbbbbbbbbbbb bbbbbb
-        </div>
-      </Route>
       <Route path='/warehouses/warehouse:idWarehouse'>
-        <ProductRouter />
+        <OneWarehouse />
+      </Route>
+      <Route exact path={'/products/product:idProduct'}>
+        <ProductList />
+      </Route>
+      <Route exact path={'/products'}>
+        <AllProducts />
       </Route>
       <Route exact path="/create-products">
         <CreateProduct />
