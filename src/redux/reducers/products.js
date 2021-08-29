@@ -1,9 +1,13 @@
-import {CREATE_PRODUCT, MOVE_PRODUCT} from "../types/products";
+import {
+  CREATE_PRODUCT,
+  MOVE_PRODUCT,
+  DELETE_PRODUCT
+} from "../types/products";
 
 const initialStateProducts =[
   {
   idProduct: 1,
-  wareHouseIds: [{idWarehouse: 1, count: 10, nameOfWarehouse: 'name'},],
+  wareHouseIds: [{idWarehouse: 1, count: 10, nameOfWarehouse: 'name'}],
   name: 'name',
   totalCount: 10,
   size: 's',
@@ -49,10 +53,18 @@ export const productsReducer = (state = initialStateProducts, action) => {
         } else {
           return product
         }
-
       })
 
       return newProductsArray
+    case DELETE_PRODUCT:
+      let indexOfProduct = null;
+      state.forEach((product, index) => {
+        if (product.idProduct === action.id) {
+          indexOfProduct = index
+        }
+      })
+
+      return state.splice(indexOfProduct, 1)
     default:
       return state
   }

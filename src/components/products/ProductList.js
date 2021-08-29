@@ -1,23 +1,43 @@
 import React, {useState} from "react";
-import {useParams} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useParams, useHistory} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 import {
   Box,
   Button,
   List,
-  ListItem,
+  ListItem, makeStyles, Menu, MenuItem,
   Typography
 } from "@material-ui/core";
 import MoveProductModal from "./MoveProductModal";
 
+import {deleteProduct} from "../../redux/actions/products";
+import {deleteProductFromWarehouse} from "../../redux/actions/warehouses";
+
+
+const useStyles = makeStyles({
+  boxContainer: {
+    display: 'flex',
+  },
+  boxDelete: {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start'
+  }
+});
+
 const ProductList = () => {
   const  { idProduct } = useParams();
+  const dispatch = useDispatch()
+  const history = useHistory()
 
+  const classes = useStyles()
   const products = useSelector(state => state.products);
   const warehouses = useSelector(state => state.warehouse);
 
   const [open, setOpen] = useState(false);
   const [warehouseData, setWarehouseData] = useState({});
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const productInfo = products.find(product => {
     return product.idProduct === Number(idProduct)
@@ -32,8 +52,23 @@ const ProductList = () => {
     setOpen(false);
   };
 
+  const handleOpenMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleDeleteProduct = () => {
+    dispatch(deleteProduct(Number(idProduct)))
+    dispatch(deleteProductFromWarehouse(Number(idProduct)))
+    history.push('/products')
+    console.log('==========>1', 1)
+  };
+
   return (
-    <Box>
+    <Box className={classes.boxContainer}>
       <List>
         <ListItem>
           Name: {productInfo.name}
@@ -86,6 +121,21 @@ const ProductList = () => {
           }
         </Box>
       </List>
+      <Box className={classes.boxDelete}>
+        <Button onClick={handleOpenMenu}>
+          action
+        </Button>
+        <Menu
+          id="simple-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleMenuClose}
+        >
+          <MenuItem onClick={handleDeleteProduct}>Delete</MenuItem>
+          <MenuItem onClick={handleMenuClose}>Close</MenuItem>
+        </Menu>
+      </Box>
       {open && <MoveProductModal open={open} onClose={handleModalClose} warehouseData={warehouseData} /> }
     </Box>
   )
