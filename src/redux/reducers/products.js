@@ -1,7 +1,8 @@
 import {
   CREATE_PRODUCT,
   MOVE_PRODUCT,
-  DELETE_PRODUCT
+  DELETE_PRODUCT,
+  DELETE_WAREHOUSES_FROM_PRODUCTS
 } from "../types/products";
 
 const initialStateProducts =[
@@ -9,7 +10,7 @@ const initialStateProducts =[
   idProduct: 1,
   wareHouseIds: [{idWarehouse: 1, count: 10, nameOfWarehouse: 'name'}],
   name: 'name',
-  totalCount: 10,
+  totalCount: 20,
   size: 's',
   pricePerCount: 230,
   width: 20,
@@ -24,6 +25,19 @@ export const productsReducer = (state = initialStateProducts, action) => {
   switch (action.type) {
     case CREATE_PRODUCT:
       return [...state, action.value]
+    case DELETE_WAREHOUSES_FROM_PRODUCTS:
+      const deletedWarehouses = state.map(product => {
+        product.wareHouseIds.map(id => {
+          if (id.idWarehouse === action.id) {
+            id.idWarehouse = -1
+            id.nameOfWarehouse = 'unallocated'
+          }
+        })
+
+        return {...product}
+      })
+
+      return deletedWarehouses
     case  MOVE_PRODUCT:
       const newProductsArray = state.map(product => {
         let counter = true
