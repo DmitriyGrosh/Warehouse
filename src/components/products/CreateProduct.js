@@ -67,11 +67,25 @@ const CreateProduct = () => {
         preciousness
       } = values
 
+      setErrorMessage('')
+
+      warehouses.forEach(warehouse => {
+        selectedWarehouses.forEach(name => {
+          const warehouseProductData = {
+            idWarehouse: warehouse.idWareHouse,
+            count: Number(values[`warehouseCount${name}`]),
+            nameOfWarehouse: name,
+          }
+
+          name === warehouse.name && warehouseIdsData.push(warehouseProductData)
+        })
+      })
+
       const data = {
         idProduct: products.length + 1,
         wareHouseIds: warehouseIdsData,
         name,
-        totalCount,
+        totalCount: Number(totalCount),
         size,
         pricePerCount,
         width,
@@ -81,19 +95,6 @@ const CreateProduct = () => {
         preciousness
       };
 
-      setErrorMessage('')
-
-      warehouses.forEach(warehouse => {
-        selectedWarehouses.forEach(name => {
-          const warehouseProductData = {
-            idWarehouse: warehouse.idWareHouse,
-            count: values[`warehouseCount${name}`]
-          }
-
-          name === warehouse.name && warehouseIdsData.push(warehouseProductData)
-        })
-      })
-
       dispatch(createProduct(data))
 
       warehouseIdsData.forEach(el => {
@@ -101,8 +102,8 @@ const CreateProduct = () => {
           idData: el.idWarehouse,
           data: {
             idProduct: products.length + 1,
-            countOfProduct: el.count,
-            nameProduct: name
+            countOfProduct: Number(el.count),
+            nameProduct: name,
           }
         }))
       })

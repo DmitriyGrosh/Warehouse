@@ -49,11 +49,11 @@ const ProductInWarehouseSchema = (
         variant="outlined"
         onChange={handleChange}
         inputProps={{
-          ...register(`warehouseCount${name}]`)
+          ...register(`warehouseCount${name}`)
         }}
-        error={!!errors[`warehouseCount${name}]`]}
+        error={!!errors[`warehouseCount${name}`]}
       />
-      {!!errors[`warehouseCount${name}]`] && <TextError>You should write location of warehouse</TextError>}
+      {!!errors[`warehouseCount${name}`] && <TextError>You should write location of warehouse</TextError>}
     </Box>
   )
 }

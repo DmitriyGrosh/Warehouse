@@ -2,9 +2,9 @@ import React from "react";
 import {Route, Switch} from "react-router-dom";
 
 import Warehouses from "../Warehouses";
-import OneWarehouse from "./OneWarehouse";
 import AddWarehouse from "../warehouses/AddWarehouse";
 import CreateProduct from "../products/CreateProduct";
+import ProductRouter from "./ProductRouter";
 
 
 const Router = () => {
@@ -19,8 +19,8 @@ const Router = () => {
           cccc bbbbbbbbbbbb bbbbbbbbbbbb bbbbbbbbbbbb bbbbbbbbbbbb bbbbbbbbbbbb bbbbbbbbbbbb bbbbbbbbbbbb bbbbbbbbbbbb bbbbbbbbbbbb bbbbbb
         </div>
       </Route>
-      <Route path='/warehouses/warehouse:id'>
-        <OneWarehouse />
+      <Route path='/warehouses/warehouse:idWarehouse'>
+        <ProductRouter />
       </Route>
       <Route exact path="/create-products">
         <CreateProduct />
