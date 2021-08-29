@@ -1,3 +1,5 @@
+import {CREATE_PRODUCT} from "../types/products";
+
 const initialStateProducts =[
   {
   idProduct: 1,
@@ -13,3 +15,12 @@ const initialStateProducts =[
   preciousness: 's',
 }
 ]
+
+export const productsReducer = (state = initialStateProducts, action) => {
+  switch (action.type) {
+    case CREATE_PRODUCT:
+      return [...state, action.value]
+    default:
+      return state
+  }
+}
