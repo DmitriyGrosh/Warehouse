@@ -40,13 +40,6 @@ export const wareHouseReducer = (state = initialStateWarehouses, action) => {
         } else {
           newProducts = [...warehouse.products]
         }
-        // action.value.ids.forEach(id => {
-        //   if (id === warehouse.idWareHouse) {
-        //     newProducts = [...warehouse.products, action.value.data]
-        //   } else {
-        //     newProducts = [...warehouse.products]
-        //   }
-        // })
         return {...warehouse, products: newProducts}
       })
 
