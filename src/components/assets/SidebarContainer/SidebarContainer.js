@@ -47,6 +47,14 @@ const SidebarContainer = ({children}) => {
             <ListItemText primary="Unallocated warehouse" />
           </ListItem>
         </NavLink>
+        <NavLink to="/products">
+          <ListItem button>
+            <ListItemIcon>
+              <UnarchiveIcon />
+            </ListItemIcon>
+            <ListItemText primary="Products" />
+          </ListItem>
+        </NavLink>
         <NavLink to="/create-products">
           <ListItem button>
             <ListItemIcon>

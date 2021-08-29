@@ -1,4 +1,4 @@
-import {ADD_PRODUCT_TO_WAREHOUSE} from "../types/warehouse";
+import {ADD_PRODUCT_TO_WAREHOUSE, DELETE_PRODUCT_FROM_WAREHOUSE} from "../types/warehouse";
 import {ADD_WAREHOUSE} from "../types/warehouse";
 
 const initialStateWarehouses =
@@ -11,7 +11,7 @@ const initialStateWarehouses =
         idProduct: 1,
         countOfProduct: 9,
         nameProduct: 'aa'
-      }
+      },
     ],
     name: 'name',
   },
@@ -33,8 +33,8 @@ const initialStateWarehouses =
 export const wareHouseReducer = (state = initialStateWarehouses, action) => {
   switch (action.type) {
     case ADD_PRODUCT_TO_WAREHOUSE:
+      let newProducts = []
       const newArrayWithProducts = state.map(warehouse => {
-        let newProducts = []
         if (warehouse.idWareHouse === action.value.idData) {
           newProducts = [...warehouse.products, action.value.data]
         } else {
@@ -46,6 +46,23 @@ export const wareHouseReducer = (state = initialStateWarehouses, action) => {
       return newArrayWithProducts
     case ADD_WAREHOUSE:
       return [...state, action.value]
+    case DELETE_PRODUCT_FROM_WAREHOUSE:
+      const deletedProducts = state.map(warehouse => {
+        let indexOfProduct = null
+        warehouse.products.map((product, index) => {
+          if (product.idProduct === action.id) {
+            indexOfProduct = index
+          }
+        })
+        
+        if (indexOfProduct !== null) {
+          warehouse.products.splice(indexOfProduct, 1)
+        }
+
+        return {...warehouse, products: [...warehouse.products]}
+      })
+
+      return deletedProducts
     default:
       return state
   }
