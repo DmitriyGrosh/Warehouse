@@ -10,7 +10,7 @@ const initialStateProducts =[
   idProduct: 1,
   wareHouseIds: [{idWarehouse: 1, count: 10, nameOfWarehouse: 'name'}],
   name: 'name',
-  totalCount: 20,
+  totalCount: 10,
   size: 's',
   pricePerCount: 230,
   width: 20,
@@ -18,7 +18,20 @@ const initialStateProducts =[
   length: 40,
   productOwner: 'XUY',
   preciousness: 's',
-}
+},
+  {
+    idProduct: 1000000,
+    wareHouseIds: [{idWarehouse: -1, count: 10, nameOfWarehouse: 'unallocated'}],
+    totalCount: 10,
+    name: 'Apple',
+    size: 's',
+    pricePerCount: 230,
+    width: 20,
+    height: 30,
+    length: 40,
+    productOwner: 'XUY',
+    preciousness: 's',
+  }
 ];
 
 export const productsReducer = (state = initialStateProducts, action) => {

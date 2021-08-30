@@ -14,7 +14,7 @@ const initialStateOtherProducts = {
 export const defaultWarehouseReducer = (state = initialStateOtherProducts, action) => {
   switch (action.type) {
     case ADD_UNALLOCATED:
-      return [...state.products, ...action.products]
+      return {...state, products: [...state.products, ...action.products]}
     default:
       return state
   }

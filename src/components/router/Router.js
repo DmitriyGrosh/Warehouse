@@ -7,6 +7,7 @@ import CreateProduct from "../products/CreateProduct";
 import OneWarehouse from "../warehouses/OneWarehouse";
 import ProductList from "../products/ProductList";
 import AllProducts from "../products/AllProducts";
+import UnallocatedWarehouse from "../UnallocatedWarehouse";
 
 
 const Router = () => {
@@ -30,6 +31,9 @@ const Router = () => {
       </Route>
       <Route exact path='/add-warehouse'>
         <AddWarehouse />
+      </Route>
+      <Route exact path='/unallocated'>
+        <UnallocatedWarehouse />
       </Route>
     </Switch>
   )

@@ -39,7 +39,7 @@ const SidebarContainer = ({children}) => {
             <ListItemText primary="Warehouses" />
           </ListItem>
         </NavLink>
-        <NavLink to="/store">
+        <NavLink to="/unallocated">
           <ListItem button>
             <ListItemIcon>
               <UnarchiveIcon />

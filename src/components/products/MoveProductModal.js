@@ -53,10 +53,10 @@ const MoveProductModal = ({onClose, open, warehouseData}) => {
             request.fromIdWarehouse = warehouseData.element.idWarehouse
             request.fromNameWarehouse = warehouseData.nameProduct
             request.countOfSend = Number(values[`warehouseCount${warehouse.name}`])
+
+            dispatch(moveProduct(request))
           }
         })
-
-        dispatch(moveProduct(request))
       })
     }
   };

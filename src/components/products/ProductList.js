@@ -33,8 +33,10 @@ const ProductList = () => {
   });
 
   const handleModalOpen = (data) => {
-    setWarehouseData(data)
-    setOpen(true)
+    if (data.name) {
+      setWarehouseData(data)
+      setOpen(true)
+    }
   };
 
   const handleModalClose = () => {
@@ -78,7 +80,7 @@ const ProductList = () => {
                 <Box key={index}>
                   <ListItem>
                     <Typography>
-                      Name of Warehouse: {nameOfWarehouse}
+                      Name of Warehouse: {nameOfWarehouse ? nameOfWarehouse : 'unallocated'}
                     </Typography>
                   </ListItem>
                   <ListItem>
