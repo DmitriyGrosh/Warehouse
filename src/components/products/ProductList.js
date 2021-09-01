@@ -36,6 +36,14 @@ const ProductList = () => {
     if (data.name) {
       setWarehouseData(data)
       setOpen(true)
+    } else {
+      const dataForUnallocated = {
+        ...data,
+        name: 'unallocated'
+      }
+
+      setWarehouseData(dataForUnallocated)
+      setOpen(true)
     }
   };
 

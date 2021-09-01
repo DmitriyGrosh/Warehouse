@@ -65,7 +65,6 @@ export const productsReducer = (state = initialStateProducts, action) => {
               const result = data.count - action.value.countOfSend
               if (result === 0) {
                 product.wareHouseIds.splice(index, 1)
-                counter = false
               } else {
                 data.count -= action.value.countOfSend
               }
