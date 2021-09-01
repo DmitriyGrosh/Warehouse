@@ -54,30 +54,35 @@ export const productsReducer = (state = initialStateProducts, action) => {
     case  MOVE_PRODUCT:
       const newProductsArray = state.map(product => {
         let counter = true
-        product.wareHouseIds.map((data) => {
-          if (data.idWarehouse === action.value.toIdWarehouse) {
-            data.count += action.value.countOfSend
-            counter = false
-          }
-
-          if (data.idWarehouse === action.value.fromIdWarehouse) {
-            const result = data.count - action.value.countOfSend
-            if (result === 0) {
-              data.idWarehouse = action.value.toIdWarehouse
+        if (product.idProduct === action.value.idProduct) {
+          product.wareHouseIds.map((data, index) => {
+            if (data.idWarehouse === action.value.toIdWarehouse) {
+              data.count += action.value.countOfSend
               counter = false
-            } else {
-              data.count -= action.value.countOfSend
             }
-          }
-        })
 
-        if (counter) {
-          const newWarehouseId = {
-            idWarehouse: action.value.toIdWarehouse,
-            count: action.value.countOfSend
+            if (data.idWarehouse === action.value.fromIdWarehouse) {
+              const result = data.count - action.value.countOfSend
+              if (result === 0) {
+                product.wareHouseIds.splice(index, 1)
+                counter = false
+              } else {
+                data.count -= action.value.countOfSend
+              }
+            }
+          })
+
+          if (counter) {
+            const newWarehouseId = {
+              idWarehouse: action.value.toIdWarehouse,
+              count: action.value.countOfSend
+            }
+            return {...product, wareHouseIds: [...product.wareHouseIds, newWarehouseId]}
+          } else {
+            return product
           }
-          return {...product, wareHouseIds: [...product.wareHouseIds, newWarehouseId]}
         } else {
+
           return product
         }
       })

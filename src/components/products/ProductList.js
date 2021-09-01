@@ -88,7 +88,14 @@ const ProductList = () => {
                       Count of Products in warehouse: {element.count}
                     </Typography>
                   </ListItem>
-                  <Button onClick={() => handleModalOpen({element: element, name: nameOfWarehouse, idProduct: productInfo.idProduct, nameProduct: productInfo.name})}>
+                  <Button onClick={() => handleModalOpen(
+                    {
+                      element: element,
+                      name: nameOfWarehouse,
+                      idProduct: productInfo.idProduct,
+                      nameProduct: productInfo.name
+                    }
+                  )}>
                     Move product to another warehouse
                   </Button>
                 </Box>
@@ -98,7 +105,11 @@ const ProductList = () => {
         </Box>
       </List>
       <ActionMenu idProdut={idProduct} />
-      {open && <MoveProductModal open={open} onClose={handleModalClose} warehouseData={warehouseData} /> }
+      {open && <MoveProductModal
+        open={open}
+        onClose={handleModalClose}
+        warehouseData={warehouseData}
+      /> }
     </Box>
   )
 }

@@ -5,6 +5,7 @@ import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
 import TextError from "../main/TextError";
 import {moveProduct} from "../../redux/actions/products";
+import {moveProductInWarehouse} from "../../redux/actions/warehouses";
 
 const MoveProductModal = ({onClose, open, warehouseData}) => {
   const warehouses = useSelector(state => state.warehouse);
@@ -55,6 +56,7 @@ const MoveProductModal = ({onClose, open, warehouseData}) => {
             request.countOfSend = Number(values[`warehouseCount${warehouse.name}`])
 
             dispatch(moveProduct(request))
+            dispatch(moveProductInWarehouse(request))
           }
         })
       })
