@@ -1,5 +1,4 @@
-import {ADD_UNALLOCATED, REMOVE_FROM_UNALLOCATED} from "../types/unallocated";
-import zIndex from "@material-ui/core/styles/zIndex";
+import {ADD_UNALLOCATED, REMOVE_FROM_UNALLOCATED, DELETE_FROM_UNALLOCATED} from "../types/unallocated";
 
 const initialStateOtherProducts = {
   products: [
@@ -16,6 +15,16 @@ export const defaultWarehouseReducer = (state = initialStateOtherProducts, actio
   switch (action.type) {
     case ADD_UNALLOCATED:
       return {...state, products: [...state.products, ...action.products]}
+    case DELETE_FROM_UNALLOCATED:
+      let indexOfDelete = null
+      const deletedProducts = state.products.map((product, index) => {
+        if (product.idProduct === action.id) {
+          indexOfDelete = index
+        }
+      })
+
+      deletedProducts.splice(indexOfDelete, 1)
+      return {...state, products: deletedProducts}
     case REMOVE_FROM_UNALLOCATED:
       let indexOfDeleted = null
       const removedProducts = state.products.map((product, index) => {

@@ -94,8 +94,8 @@ export const productsReducer = (state = initialStateProducts, action) => {
           indexOfProduct = index
         }
       })
-
-      return state.splice(indexOfProduct, 1)
+      state.splice(indexOfProduct, 1)
+      return state
     default:
       return state
   }

@@ -5,7 +5,7 @@ import {useHistory} from "react-router-dom";
 
 import {deleteProduct, deleteWarehousesFromProducts} from "../../../redux/actions/products";
 import {deleteProductFromWarehouse, deleteWarehouse} from "../../../redux/actions/warehouses";
-import {addUnallocated} from "../../../redux/actions/unallocated";
+import {addUnallocated, deleteFromUnallocated} from "../../../redux/actions/unallocated";
 
 const useStyles = makeStyles({
   boxDelete: {
@@ -22,6 +22,7 @@ const ActionMenu = ({idProduct, idWarehouse}) => {
   const dispatch = useDispatch()
   const history = useHistory()
   const warehouses = useSelector(state => state.warehouse)
+  const unallocated = useSelector(state => state.unallocated)
 
   const handleOpenMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -35,6 +36,12 @@ const ActionMenu = ({idProduct, idWarehouse}) => {
     if (idProduct) {
       dispatch(deleteProduct(Number(idProduct)))
       dispatch(deleteProductFromWarehouse(Number(idProduct)))
+
+      unallocated.products.forEach(product => {
+        if (product.idProduct === idProduct) {
+          dispatch(deleteFromUnallocated(Number(idProduct)))
+        }
+      })
       history.push('/products')
     } else {
       const warehouseInfo = warehouses.find(warehouse => {

@@ -112,7 +112,7 @@ const ProductList = () => {
           }
         </Box>
       </List>
-      <ActionMenu idProdut={idProduct} />
+      <ActionMenu idProduct={idProduct} />
       {open && <MoveProductModal
         open={open}
         onClose={handleModalClose}
