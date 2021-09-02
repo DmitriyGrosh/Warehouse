@@ -1,11 +1,18 @@
-import React from 'react';
-import {Drawer, List, ListItem, ListItemIcon, ListItemText, makeStyles} from '@material-ui/core';
-import HomeIcon from '@material-ui/icons/Home';
+import React from "react";
+import {
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  makeStyles
+} from "@material-ui/core";
+import HomeIcon from "@material-ui/icons/Home";
 import {NavLink} from "react-router-dom";
-import CreateIcon from '@material-ui/icons/Create';
-import UnarchiveIcon from '@material-ui/icons/Unarchive';
-import CreateNewFolderIcon from '@material-ui/icons/CreateNewFolder';
-import AppsIcon from '@material-ui/icons/Apps';
+import CreateIcon from "@material-ui/icons/Create";
+import UnarchiveIcon from "@material-ui/icons/Unarchive";
+import CreateNewFolderIcon from "@material-ui/icons/CreateNewFolder";
+import AppsIcon from "@material-ui/icons/Apps";
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
@@ -30,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
 const SidebarContainer = () => {
   const classes = useStyles();
   return (
-
     <Drawer
       className={classes.drawer}
       variant="persistent"
@@ -84,7 +90,7 @@ const SidebarContainer = () => {
       </List>
     </Drawer>
   )
-}
+};
 
 
 export default SidebarContainer;

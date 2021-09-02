@@ -33,7 +33,7 @@ const initialStateWarehouses =
       ],
       name: 'nameaaa',
     }
-  ]
+  ];
 
 export const wareHouseReducer = (state = initialStateWarehouses, action) => {
   switch (action.type) {
@@ -124,4 +124,4 @@ export const wareHouseReducer = (state = initialStateWarehouses, action) => {
     default:
       return state
   }
-}
+};

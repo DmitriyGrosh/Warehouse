@@ -49,7 +49,7 @@ const CreateProduct = () => {
   const steps = ['Create product', "Distribute product"];
 
   const handleAddWarehouse = () => {
-    const values = getValues()
+    const values = getValues();
 
     if (submitError) {
       setErrorMessage('you must distribute all products')
@@ -178,6 +178,6 @@ const CreateProduct = () => {
       </Box>
     </Container>
   )
-}
+};
 
-export default CreateProduct
+export default CreateProduct;

@@ -1,9 +1,17 @@
 import React, {useEffect, useState} from "react";
-import {Box, Button, Dialog, DialogContent, DialogTitle} from "@material-ui/core";
-import ProductInWarehouseSchema from "./ProductInWarehouseSchema";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogContent,
+  DialogTitle
+} from "@material-ui/core";
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
+
+import ProductInWarehouseSchema from "./ProductInWarehouseSchema";
 import TextError from "../main/TextError";
+
 import {moveProduct} from "../../redux/actions/products";
 import {moveProductInWarehouse} from "../../redux/actions/warehouses";
 import {removeFromUnallocated} from "../../redux/actions/unallocated";
@@ -12,7 +20,7 @@ const MoveProductModal = ({onClose, open, warehouseData}) => {
   const warehouses = useSelector(state => state.warehouse);
   const filteredWarehouses = warehouses.filter(warehouse => warehouse.idWareHouse !== warehouseData.element.idWarehouse);
 
-  const {getValues, register, formState: { errors }} = useForm();
+  const {getValues, register, formState: { errors }} = useForm()
   const [selectedWarehouses, setSelectedWarehouses] = useState([]);
   const [flag, setFlag] = useState(0);
   const [error, setError] = useState('');
@@ -21,6 +29,7 @@ const MoveProductModal = ({onClose, open, warehouseData}) => {
   useEffect(() => {
     const values = getValues();
     let counter = 0;
+
     filteredWarehouses.forEach(warehouse => {
       if (values[`warehouseCount${warehouse.name}`]) {
         counter += Number(values[`warehouseCount${warehouse.name}`])
@@ -101,6 +110,6 @@ const MoveProductModal = ({onClose, open, warehouseData}) => {
       </DialogContent>
     </Dialog>
   )
-}
+};
 
-export default MoveProductModal
+export default MoveProductModal;

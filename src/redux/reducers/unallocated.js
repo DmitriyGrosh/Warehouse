@@ -1,4 +1,8 @@
-import {ADD_UNALLOCATED, REMOVE_FROM_UNALLOCATED, DELETE_FROM_UNALLOCATED} from "../types/unallocated";
+import {
+  ADD_UNALLOCATED,
+  REMOVE_FROM_UNALLOCATED,
+  DELETE_FROM_UNALLOCATED
+} from "../types/unallocated";
 
 const initialStateOtherProducts = {
   products: [
@@ -8,13 +12,12 @@ const initialStateOtherProducts = {
       nameProduct: 'Apple'
     },
   ]
-}
+};
 
 
 export const defaultWarehouseReducer = (state = initialStateOtherProducts, action) => {
   switch (action.type) {
     case ADD_UNALLOCATED:
-      console.log('==========>1111', 1111)
       let counter = 0
       const newProducts = state.products.map(product => {
         if (product.idProduct === action.products[0].idProduct) {
@@ -59,12 +62,10 @@ export const defaultWarehouseReducer = (state = initialStateOtherProducts, actio
       if (indexOfDeleted !== null) {
         removedProducts.splice(indexOfDeleted, 1)
       }
-      
-      console.log('==========>removedProducts', removedProducts)
 
       return {...state, products: removedProducts}
     default:
       return state
   }
-}
+};
 

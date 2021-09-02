@@ -10,33 +10,30 @@ import AllProducts from "../products/AllProducts";
 import UnallocatedWarehouse from "../UnallocatedWarehouse";
 
 
-const Router = () => {
-
-  return (
-    <Switch>
-      <Route exact path="/warehouses">
-        <Warehouses />
-      </Route>
-      <Route path='/warehouses/warehouse:idWarehouse'>
-        <OneWarehouse />
-      </Route>
-      <Route exact path={'/products/product:idProduct'}>
-        <ProductList />
-      </Route>
-      <Route exact path={'/products'}>
-        <AllProducts />
-      </Route>
-      <Route exact path="/create-products">
-        <CreateProduct />
-      </Route>
-      <Route exact path='/add-warehouse'>
-        <AddWarehouse />
-      </Route>
-      <Route exact path='/unallocated'>
-        <UnallocatedWarehouse />
-      </Route>
-    </Switch>
-  )
-};
+const Router = () => (
+  <Switch>
+    <Route exact path="/warehouses">
+      <Warehouses/>
+    </Route>
+    <Route path='/warehouses/warehouse:idWarehouse'>
+      <OneWarehouse/>
+    </Route>
+    <Route exact path={'/products/product:idProduct'}>
+      <ProductList/>
+    </Route>
+    <Route exact path={'/products'}>
+      <AllProducts/>
+    </Route>
+    <Route exact path="/create-products">
+      <CreateProduct/>
+    </Route>
+    <Route exact path='/add-warehouse'>
+      <AddWarehouse/>
+    </Route>
+    <Route exact path='/unallocated'>
+      <UnallocatedWarehouse/>
+    </Route>
+  </Switch>
+);
 
 export default Router

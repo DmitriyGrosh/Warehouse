@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState} from "react";
 import {
   Box,
   Button,
@@ -10,8 +10,8 @@ import {
 } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
-import {addWarehouse, moveProductInWarehouse} from "../../redux/actions/warehouses"
-import MuiAlert from '@material-ui/lab/Alert';
+import {addWarehouse, moveProductInWarehouse} from "../../redux/actions/warehouses";
+import MuiAlert from "@material-ui/lab/Alert";
 
 import TextError from "../main/TextError";
 import {removeFromUnallocated} from "../../redux/actions/unallocated";
@@ -27,7 +27,7 @@ const useStyles = makeStyles({
   textField: {
     width: '100%'
   }
-})
+});
 
 const AddWarehouse = () => {
   const [open, setOpen] = useState(false)
@@ -39,7 +39,6 @@ const AddWarehouse = () => {
     getValues,
     register,
     trigger,
-    reset,
     formState: { errors }
   } = useForm(
     {
@@ -70,11 +69,6 @@ const AddWarehouse = () => {
         dispatch(addWarehouse(newWarehouse))
         setOpen(true)
         setIsCreateWarehouse(true)
-        // reset({
-        //   area: '',
-        //   name: '',
-        //   location: ''
-        // })
       }
     })
   }
@@ -194,6 +188,6 @@ const AddWarehouse = () => {
       </Snackbar>
     </Container>
   )
-}
+};
 
-export default AddWarehouse
+export default AddWarehouse;

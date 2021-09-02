@@ -1,5 +1,11 @@
 import React from 'react'
-import {Box, InputLabel, makeStyles, TextField} from "@material-ui/core";
+import {
+  Box,
+  InputLabel,
+  makeStyles,
+  TextField
+} from "@material-ui/core";
+
 import TextError from "../main/TextError";
 
 const useStyles = makeStyles({
@@ -56,6 +62,6 @@ const ProductInWarehouseSchema = (
       {!!errors[`warehouseCount${name}`] && <TextError>You should write location of warehouse</TextError>}
     </Box>
   )
-}
+};
 
-export default ProductInWarehouseSchema
+export default ProductInWarehouseSchema;

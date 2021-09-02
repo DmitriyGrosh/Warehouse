@@ -1,13 +1,13 @@
 import React from 'react'
 import {
-  Button,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Paper, Container, Typography
+  Paper,
+  Container
 } from "@material-ui/core";
 import {useSelector} from "react-redux";
 import { useHistory, useRouteMatch } from "react-router-dom";
@@ -26,15 +26,15 @@ const useStyles = makeStyles({
 })
 
 const Warehouses = () => {
-  const classes = useStyles()
-  const warehouses = useSelector(state => state.warehouse)
-  const history = useHistory()
+  const classes = useStyles();
+  const warehouses = useSelector(state => state.warehouse);
+  const history = useHistory();
   
-  const { path } = useRouteMatch()
+  const { path } = useRouteMatch();
 
   const handleRedirect = (id) => {
     history.push(`${path}/warehouse${id}`)
-  }
+  };
 
   return (
     <Container>
@@ -89,6 +89,6 @@ const Warehouses = () => {
     </TableContainer>
     </Container>
   )
-}
+};
 
 export default Warehouses;

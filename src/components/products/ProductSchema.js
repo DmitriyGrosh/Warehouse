@@ -1,5 +1,10 @@
 import React from "react";
-import {Box, makeStyles, TextField} from "@material-ui/core";
+import {
+  Box,
+  makeStyles,
+  TextField
+} from "@material-ui/core";
+
 import TextError from "../main/TextError";
 
 const useStyles = makeStyles({
@@ -129,4 +134,4 @@ const ProductSchema = ({register, errors}) => {
   )
 };
 
-export default ProductSchema
+export default ProductSchema;

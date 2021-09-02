@@ -8,4 +8,4 @@ export const newRootReducer = combineReducers({
   products: productsReducer,
   warehouse: wareHouseReducer,
   unallocated: defaultWarehouseReducer
-})
+});

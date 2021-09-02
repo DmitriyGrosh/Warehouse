@@ -1,5 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import {Box, makeStyles, Typography} from "@material-ui/core";
+import {
+  Box,
+  makeStyles,
+  Typography
+} from "@material-ui/core";
+
 import ProductInWarehouseSchema from "./ProductInWarehouseSchema";
 
 const useStyles = makeStyles({
@@ -25,17 +30,15 @@ const DistributeProductSchema = (
     setSubmitError
   }
 ) => {
-  const classes = useStyles()
-  const data = getValues()
-  let totalCount = data.totalCount
-  const [flag, setFlag] = useState(0)
-  const [distributed, setDistributed] = useState(totalCount)
-
-
+  const classes = useStyles();
+  const data = getValues();
+  let totalCount = data.totalCount;
+  const [flag, setFlag] = useState(0);
+  const [distributed, setDistributed] = useState(totalCount);
   
   useEffect(() => {
-    let counter = 0
-    let result = totalCount
+    let counter = 0;
+    let result = totalCount;
     
     selectedWarehouses.forEach(name => {
       counter += Number(data[`warehouseCount${name}`])
@@ -71,6 +74,6 @@ const DistributeProductSchema = (
       }
   </Box>
   )
-}
+};
 
-export default  DistributeProductSchema
+export default  DistributeProductSchema;

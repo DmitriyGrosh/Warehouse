@@ -9,7 +9,7 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TableRow, Typography
+  TableRow
 } from "@material-ui/core";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import HeadName from "../assets/Typographies/HeadName";

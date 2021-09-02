@@ -1,26 +1,25 @@
 import React from "react";
 import {
-  Container, Paper,
+  Container,
+  Paper,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
-  TableRow, Typography
+  TableRow
 } from "@material-ui/core";
 import {useSelector} from "react-redux";
-import {useHistory, useRouteMatch} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import HeadName from "./assets/Typographies/HeadName";
 
 const UnallocatedWarehouse = () => {
-
-  const unallocated = useSelector(state => state.unallocated)
-  console.log('==========>unallocated', unallocated)
-
-  const history = useHistory()
+  const unallocated = useSelector(state => state.unallocated);
+  const history = useHistory();
   const handleRedirect = (id) => {
     history.push(`products/product${id}`)
-  }
+  };
+
   return (
     <Container>
       <HeadName text={'Unallocated warehouse'} />
@@ -57,6 +56,6 @@ const UnallocatedWarehouse = () => {
       </TableContainer>
     </Container>
   )
-}
+};
 
-export default UnallocatedWarehouse
+export default UnallocatedWarehouse;

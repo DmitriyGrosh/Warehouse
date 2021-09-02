@@ -9,6 +9,7 @@ import {
   makeStyles,
   Typography
 } from "@material-ui/core";
+
 import MoveProductModal from "./MoveProductModal";
 import ActionMenu from "../assets/ActionMenu/ActionMenu";
 

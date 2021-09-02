@@ -12,11 +12,15 @@ import {
 } from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
+import {useForm} from "react-hook-form";
 
-import {deleteProduct, deleteWarehousesFromProducts, moveProduct} from "../../../redux/actions/products";
+import {
+  deleteProduct,
+  deleteWarehousesFromProducts,
+  moveProduct
+} from "../../../redux/actions/products";
 import {deleteProductFromWarehouse, deleteWarehouse} from "../../../redux/actions/warehouses";
 import {addUnallocated, deleteFromUnallocated} from "../../../redux/actions/unallocated";
-import {useForm} from "react-hook-form";
 
 const useStyles = makeStyles({
   boxDelete: {
@@ -28,14 +32,14 @@ const useStyles = makeStyles({
 });
 
 const ActionMenu = ({idProduct, idWarehouse}) => {
-  const classes = useStyles()
+  const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
-  const [openModal, setOpenModal] = useState(false)
-  const dispatch = useDispatch()
-  const history = useHistory()
-  const warehouses = useSelector(state => state.warehouse)
-  const unallocated = useSelector(state => state.unallocated)
-  const products = useSelector(state => state.products)
+  const [openModal, setOpenModal] = useState(false);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const warehouses = useSelector(state => state.warehouse);
+  const unallocated = useSelector(state => state.unallocated);
+  const products = useSelector(state => state.products);
   const {getValues, register, trigger, reset, formState: { errors }} = useForm()
 
   const handleOpenMenu = (event) => {
@@ -155,6 +159,6 @@ const ActionMenu = ({idProduct, idWarehouse}) => {
       </Dialog>
     </Box>
   )
-}
+};
 
-export default ActionMenu
+export default ActionMenu;

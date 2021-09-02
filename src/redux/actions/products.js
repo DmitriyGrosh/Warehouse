@@ -10,25 +10,25 @@ export const createProduct = (value) => {
     type: CREATE_PRODUCT,
     value
   }
-}
+};
 
 export const moveProduct = (value) => {
   return {
     type: MOVE_PRODUCT,
     value
   }
-}
+};
 
 export const deleteProduct = (id) => {
   return {
     type: DELETE_PRODUCT,
     id: id
   }
-}
+};
 
 export const deleteWarehousesFromProducts = (id) => {
   return {
     type: DELETE_WAREHOUSES_FROM_PRODUCTS,
     id: id
   }
-}
+};
