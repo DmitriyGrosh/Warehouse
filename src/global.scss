@@ -22,3 +22,9 @@ a img {
   text-decoration: none;
   color: black;
 }
+
+.active {
+  div {
+    background: lightgray !important;
+  }
+}

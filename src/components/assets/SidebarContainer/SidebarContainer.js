@@ -5,19 +5,29 @@ import {NavLink} from "react-router-dom";
 import CreateIcon from '@material-ui/icons/Create';
 import UnarchiveIcon from '@material-ui/icons/Unarchive';
 import CreateNewFolderIcon from '@material-ui/icons/CreateNewFolder';
+import AppsIcon from '@material-ui/icons/Apps';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   drawer: {
     width: 250,
     flexShrink: 0,
+    [theme.breakpoints.down('sm')]: {
+      width: 60,
+    },
   },
   drawerPaper: {
     width: 250,
-    border: "none"
+    border: "none",
+    [theme.breakpoints.down('sm')]: {
+      width: 60,
+    },
+  },
+  link: {
+    background:"red"
   }
-})
+}));
 
-const SidebarContainer = ({children}) => {
+const SidebarContainer = () => {
   const classes = useStyles();
   return (
 
@@ -39,7 +49,7 @@ const SidebarContainer = ({children}) => {
             <ListItemText primary="Warehouses" />
           </ListItem>
         </NavLink>
-        <NavLink to="/store">
+        <NavLink to="/unallocated">
           <ListItem button>
             <ListItemIcon>
               <UnarchiveIcon />
@@ -50,7 +60,7 @@ const SidebarContainer = ({children}) => {
         <NavLink to="/products">
           <ListItem button>
             <ListItemIcon>
-              <UnarchiveIcon />
+              <AppsIcon />
             </ListItemIcon>
             <ListItemText primary="Products" />
           </ListItem>

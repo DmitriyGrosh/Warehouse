@@ -5,6 +5,8 @@ import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
 import TextError from "../main/TextError";
 import {moveProduct} from "../../redux/actions/products";
+import {moveProductInWarehouse} from "../../redux/actions/warehouses";
+import {removeFromUnallocated} from "../../redux/actions/unallocated";
 
 const MoveProductModal = ({onClose, open, warehouseData}) => {
   const warehouses = useSelector(state => state.warehouse);
@@ -43,20 +45,29 @@ const MoveProductModal = ({onClose, open, warehouseData}) => {
 
     if (!error) {
       filteredWarehouses.forEach(warehouse => {
-        let request = {};
         selectedWarehouses.forEach(name => {
           if (name === warehouse.name) {
-            request.toNameWarehouse = name
-            request.toIdWarehouse = warehouse.idWareHouse
-            request.nameProduct = warehouseData.name
-            request.idProduct = warehouseData.idProduct
-            request.fromIdWarehouse = warehouseData.element.idWarehouse
-            request.fromNameWarehouse = warehouseData.nameProduct
-            request.countOfSend = Number(values[`warehouseCount${warehouse.name}`])
+            const request = {
+              toNameWarehouse: name,
+              toIdWarehouse: warehouse.idWareHouse,
+              nameProduct: warehouseData.nameProduct,
+              idProduct: warehouseData.idProduct,
+              fromIdWarehouse: warehouseData.element.idWarehouse,
+              fromNameWarehouse: warehouseData.name,
+              countOfSend: Number(values[`warehouseCount${warehouse.name}`]),
+              isDeleted: true
+            }
+
+            if (warehouseData.name === 'unallocated') {
+              dispatch(moveProductInWarehouse(request))
+              dispatch(removeFromUnallocated(request))
+              dispatch(moveProduct(request))
+            } else {
+              dispatch(moveProduct(request))
+              dispatch(moveProductInWarehouse(request)) 
+            }
           }
         })
-
-        dispatch(moveProduct(request))
       })
     }
   };

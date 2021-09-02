@@ -1,10 +1,21 @@
-import React from 'react'
-import {Box, Button, Container, FormControl, makeStyles, TextField, Typography} from "@material-ui/core";
+import React, {useState} from 'react'
+import {
+  Box,
+  Button,
+  Container,
+  makeStyles,
+  Snackbar,
+  TextField,
+  Typography
+} from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
-import {addWarehouse} from "../../redux/actions/warehouses"
+import {addWarehouse, moveProductInWarehouse} from "../../redux/actions/warehouses"
+import MuiAlert from '@material-ui/lab/Alert';
 
 import TextError from "../main/TextError";
+import {removeFromUnallocated} from "../../redux/actions/unallocated";
+import {moveProduct} from "../../redux/actions/products";
 
 const useStyles = makeStyles({
   box: {
@@ -19,11 +30,27 @@ const useStyles = makeStyles({
 })
 
 const AddWarehouse = () => {
+  const [open, setOpen] = useState(false)
+  const [isCreateWarehouse, setIsCreateWarehouse] = useState(false)
 
   const dispatch = useDispatch()
 
-  const {getValues, register, trigger, formState: { errors }} = useForm()
+  const {
+    getValues,
+    register,
+    trigger,
+    reset,
+    formState: { errors }
+  } = useForm(
+    {
+      defaultValues: {
+        area: '',
+        name: '',
+        location: ''
+      }
+    })
   const warehouses = useSelector(state => state.warehouse)
+  const unallocated = useSelector(state => state.unallocated)
 
   const handleAddWarehouse = () => {
     const preCheckedValues = ["location", "area", "name"]
@@ -39,8 +66,39 @@ const AddWarehouse = () => {
         name
       }
 
-      isValid && dispatch(addWarehouse(newWarehouse))
+      if (isValid) {
+        dispatch(addWarehouse(newWarehouse))
+        setOpen(true)
+        setIsCreateWarehouse(true)
+        // reset({
+        //   area: '',
+        //   name: '',
+        //   location: ''
+        // })
+      }
     })
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  const handleMove = (value) => {
+    const data = getValues()
+    const request = {
+      toNameWarehouse: data.name,
+      toIdWarehouse: warehouses.length,
+      nameProduct: value.nameProduct,
+      idProduct: value.idProduct,
+      fromIdWarehouse: -1,
+      fromNameWarehouse: 'unallocated',
+      countOfSend: Number(data[`${value.nameProduct}`]),
+      isDeleted: true
+    }
+
+    dispatch(moveProductInWarehouse(request))
+    dispatch(removeFromUnallocated(request))
+    dispatch(moveProduct(request))
   }
 
   const classes = useStyles()
@@ -93,6 +151,47 @@ const AddWarehouse = () => {
             Add Warehouse
           </Button>
       </Box>
+      {isCreateWarehouse && <Box>
+        {
+          unallocated.products.map((element) => {
+            return (
+              <Box>
+                <Typography>
+                  {element.nameProduct}
+                </Typography>
+                <Typography>
+                  {element.countOfProduct}
+                </Typography>
+                <TextField
+                  className={classes.textField}
+                  label="count"
+                  type="number"
+                  variant="outlined"
+                  inputProps={{
+                    ...register(element.nameProduct)
+                  }}
+                  error={!!errors.name}
+                />
+                <Button
+                  onClick={() => handleMove(element)}
+                >
+                  move from unallocated to new warehouse
+                </Button>
+              </Box>
+            )
+          })
+        }
+      </Box>}
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+      >
+        <MuiAlert onClose={handleClose} severity="success">
+          You add warehouse!
+        </MuiAlert>
+      </Snackbar>
     </Container>
   )
 }
