@@ -6,7 +6,7 @@ const initialStateOtherProducts = {
       idProduct: 1000000,
       countOfProduct: 10,
       nameProduct: 'Apple'
-    }
+    },
   ]
 }
 
@@ -14,7 +14,22 @@ const initialStateOtherProducts = {
 export const defaultWarehouseReducer = (state = initialStateOtherProducts, action) => {
   switch (action.type) {
     case ADD_UNALLOCATED:
-      return {...state, products: [...state.products, ...action.products]}
+      console.log('==========>action.products', action.products[0])
+      let counter = 0
+      const newProducts = state.products.map(product => {
+        if (product.idProduct === action.products[0].idProduct) {
+          product.countOfProduct += action.products[0].countOfProduct
+          counter += 1
+          return product
+        } else {
+          return product
+        }
+      })
+      if (counter !== 0) {
+        return {...state, products: newProducts}
+      } else {
+        return {...state, products: [...state.products, ...action.products]}
+      }
     case DELETE_FROM_UNALLOCATED:
       let indexOfDelete = null
       const deletedProducts = state.products.map((product, index) => {

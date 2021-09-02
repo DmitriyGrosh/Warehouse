@@ -79,6 +79,7 @@ export const wareHouseReducer = (state = initialStateWarehouses, action) => {
 
       return deletedProducts
     case MOVE_PRODUCT_IN_WAREHOUSE:
+      console.log('==========>action.value', action.value)
       const redirectedProducts = state.map(warehouse => {
         let counter = 0
 
@@ -96,6 +97,7 @@ export const wareHouseReducer = (state = initialStateWarehouses, action) => {
         }
 
         if (warehouse.idWareHouse === action.value.toIdWarehouse) {
+          console.log('==========>2', 2)
           warehouse.products.map((product) => {
             if (product.idProduct === action.value.idProduct) {
               const result = product.countOfProduct + action.value.countOfSend
