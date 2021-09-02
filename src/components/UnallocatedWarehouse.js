@@ -1,15 +1,16 @@
 import React from "react";
 import {
-  Container,
+  Container, Paper,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
-  TableRow
+  TableRow, Typography
 } from "@material-ui/core";
 import {useSelector} from "react-redux";
 import {useHistory, useRouteMatch} from "react-router-dom";
+import HeadName from "./assets/Typographies/HeadName";
 
 const UnallocatedWarehouse = () => {
 
@@ -22,7 +23,8 @@ const UnallocatedWarehouse = () => {
   }
   return (
     <Container>
-      <TableContainer>
+      <HeadName text={'Unallocated warehouse'} />
+      <TableContainer component={Paper}>
         <Table>
           <TableHead>
             <TableRow>

@@ -92,7 +92,8 @@ const AddWarehouse = () => {
       idProduct: value.idProduct,
       fromIdWarehouse: -1,
       fromNameWarehouse: 'unallocated',
-      countOfSend: Number(data[`${value.nameProduct}`])
+      countOfSend: Number(data[`${value.nameProduct}`]),
+      isDeleted: true
     }
 
     dispatch(moveProductInWarehouse(request))

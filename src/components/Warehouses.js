@@ -7,11 +7,12 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper, Container
+  Paper, Container, Typography
 } from "@material-ui/core";
 import {useSelector} from "react-redux";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import {makeStyles} from "@material-ui/core"
+import HeadName from "./assets/Typographies/HeadName";
 
 const useStyles = makeStyles({
   tableContainer: {
@@ -30,7 +31,6 @@ const Warehouses = () => {
   const history = useHistory()
   
   const { path } = useRouteMatch()
-  console.log('==========>path', path)
 
   const handleRedirect = (id) => {
     history.push(`${path}/warehouse${id}`)
@@ -38,6 +38,7 @@ const Warehouses = () => {
 
   return (
     <Container>
+      <HeadName text={'All Warehouses'} />
     <TableContainer
       className={classes.tableContainer}
       component={Paper}

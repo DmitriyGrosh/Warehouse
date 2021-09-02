@@ -71,7 +71,7 @@ export const productsReducer = (state = initialStateProducts, action) => {
             }
           })
 
-          if (counter) {
+          if (counter && action.value.isDeleted) {
             const newWarehouseId = {
               idWarehouse: action.value.toIdWarehouse,
               count: action.value.countOfSend

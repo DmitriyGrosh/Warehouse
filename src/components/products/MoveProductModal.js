@@ -54,7 +54,8 @@ const MoveProductModal = ({onClose, open, warehouseData}) => {
               idProduct: warehouseData.idProduct,
               fromIdWarehouse: warehouseData.element.idWarehouse,
               fromNameWarehouse: warehouseData.name,
-              countOfSend: Number(values[`warehouseCount${warehouse.name}`])
+              countOfSend: Number(values[`warehouseCount${warehouse.name}`]),
+              isDeleted: true
             }
 
             if (warehouseData.name === 'unallocated') {

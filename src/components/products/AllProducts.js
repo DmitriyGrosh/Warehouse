@@ -3,15 +3,16 @@ import {useSelector} from "react-redux";
 import {
   Container,
   List,
-  ListItem,
+  ListItem, Paper,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
-  TableRow
+  TableRow, Typography
 } from "@material-ui/core";
 import { useHistory, useRouteMatch } from "react-router-dom";
+import HeadName from "../assets/Typographies/HeadName";
 
 const AllProducts = () => {
   const products = useSelector(state => state.products)
@@ -23,7 +24,8 @@ const AllProducts = () => {
 
   return (
     <Container>
-      <TableContainer>
+      <HeadName text={'All Products'} />
+      <TableContainer component={Paper}>
         <Table>
           <TableHead>
             <TableRow>

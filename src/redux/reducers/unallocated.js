@@ -14,7 +14,7 @@ const initialStateOtherProducts = {
 export const defaultWarehouseReducer = (state = initialStateOtherProducts, action) => {
   switch (action.type) {
     case ADD_UNALLOCATED:
-      console.log('==========>action.products', action.products[0])
+      console.log('==========>1111', 1111)
       let counter = 0
       const newProducts = state.products.map(product => {
         if (product.idProduct === action.products[0].idProduct) {
