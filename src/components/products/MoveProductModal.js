@@ -4,7 +4,7 @@ import {
   Button,
   Dialog,
   DialogContent,
-  DialogTitle
+  DialogTitle, makeStyles, Typography
 } from "@material-ui/core";
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
@@ -16,7 +16,14 @@ import {moveProduct} from "../../redux/actions/products";
 import {moveProductInWarehouse} from "../../redux/actions/warehouses";
 import {removeFromUnallocated} from "../../redux/actions/unallocated";
 
+const useStyles = makeStyles({
+  label: {
+    marginBottom: '10px'
+  }
+})
+
 const MoveProductModal = ({onClose, open, warehouseData}) => {
+  const classes = useStyles()
   const warehouses = useSelector(state => state.warehouse);
   const filteredWarehouses = warehouses.filter(warehouse => warehouse.idWareHouse !== warehouseData.element.idWarehouse);
 
@@ -52,7 +59,7 @@ const MoveProductModal = ({onClose, open, warehouseData}) => {
       setError('')
     }
 
-    if (!error) {
+    if (error) {
       filteredWarehouses.forEach(warehouse => {
         selectedWarehouses.forEach(name => {
           if (name === warehouse.name) {
@@ -84,10 +91,12 @@ const MoveProductModal = ({onClose, open, warehouseData}) => {
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>
-        modal open
+        you can remove products to these warehouses
       </DialogTitle>
       <DialogContent>
-        Count {warehouseData.element.count}
+        <Typography className={classes.label}>
+          Count {warehouseData.element.count}
+        </Typography>
         {
           filteredWarehouses.map(warehouse => {
             return (
@@ -103,7 +112,11 @@ const MoveProductModal = ({onClose, open, warehouseData}) => {
               </Box>)
           })
         }
-        <Button onClick={handleMove}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleMove}
+        >
           Move
         </Button>
         {error && <TextError>{error}</TextError>}

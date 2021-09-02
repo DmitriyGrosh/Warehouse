@@ -28,6 +28,14 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'flex-start'
+  },
+  dialogContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+  },
+  textField: {
+    margin: '15px 0'
   }
 });
 
@@ -120,7 +128,11 @@ const ActionMenu = ({idProduct, idWarehouse}) => {
 
   return (
     <Box className={classes.boxDelete}>
-      <Button onClick={handleOpenMenu}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleOpenMenu}
+      >
         action
       </Button>
       <Menu
@@ -136,11 +148,12 @@ const ActionMenu = ({idProduct, idWarehouse}) => {
         {idWarehouse && <MenuItem onClick={handleMenuEdit}>Edit Warehouse</MenuItem>}
       </Menu>
       <Dialog open={openModal} onClose={handleModalClose}>
-        {idProduct && <DialogContent>
+        {idProduct && <DialogContent className={classes.dialogContent}>
           <Typography>
             You can add more products
           </Typography>
           <TextField
+            className={classes.textField}
             onFocus={handleChange}
             label="Count of products"
             type="number"
@@ -151,8 +164,11 @@ const ActionMenu = ({idProduct, idWarehouse}) => {
             error={!!errors.count}
           />
           <Button
+            variant="contained"
+            color="primary"
             disabled={!!errors.count}
-            onClick={handleMove}>
+            onClick={handleMove}
+          >
             move
           </Button>
         </DialogContent>}

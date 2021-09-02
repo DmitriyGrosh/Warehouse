@@ -62,9 +62,10 @@ const Warehouses = () => {
         </TableHead>
         <TableBody>
           {
-            warehouses?.map(e => {
+            warehouses?.map((e, i) => {
               return (
                 <TableRow
+                  key={i}
                   onClick={() => handleRedirect(e.idWareHouse)}
                   className={classes.tableRow}
                 >

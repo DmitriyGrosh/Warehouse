@@ -141,7 +141,11 @@ const AddWarehouse = () => {
           />
           {!!errors.name && <TextError>You should write name of warehouse</TextError>}
         </Box>
-          <Button onClick={handleAddWarehouse} variant="outlined">
+          <Button
+            onClick={handleAddWarehouse}
+            variant="contained"
+            color="primary"
+          >
             Add Warehouse
           </Button>
       </Box>
@@ -167,6 +171,8 @@ const AddWarehouse = () => {
                   error={!!errors.name}
                 />
                 <Button
+                  variant="contained"
+                  color="primary"
                   onClick={() => handleMove(element)}
                 >
                   move from unallocated to new warehouse

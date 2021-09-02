@@ -61,9 +61,9 @@ const OneWarehouse = () => {
           </TableHead>
           <TableBody>
             {
-              products.map(product => {
+              products.map((product, i) => {
                 return (
-                  <TableRow onClick={() => handleRedirect(product.idProduct)}>
+                  <TableRow key={i} onClick={() => handleRedirect(product.idProduct)}>
                     <TableCell>
                       {product.nameProduct}
                     </TableCell>

@@ -41,7 +41,7 @@ const SidebarContainer = () => {
       className={classes.drawer}
       variant="persistent"
       anchor="left"
-      open={open}
+      open={true}
       classes={{
         paper: classes.drawerPaper
       }}

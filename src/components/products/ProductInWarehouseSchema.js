@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Box,
+  Box, Divider,
   InputLabel,
   makeStyles,
   TextField
@@ -14,7 +14,10 @@ const useStyles = makeStyles({
     marginBottom: '20px'
   },
   textField: {
-    marginTop: '20px'
+    margin: '15px 0 10px'
+  },
+  divider: {
+    margin: '15px 0'
   }
 });
 
@@ -47,7 +50,7 @@ const ProductInWarehouseSchema = (
 
   return (
     <Box display='flex' flexDirection='column'>
-      <InputLabel>Warehouse {name}</InputLabel>
+      <InputLabel>Warehouse: {name}</InputLabel>
       <TextField
         className={classes.textField}
         label="Count"
@@ -60,6 +63,7 @@ const ProductInWarehouseSchema = (
         error={!!errors[`warehouseCount${name}`]}
       />
       {!!errors[`warehouseCount${name}`] && <TextError>You should write location of warehouse</TextError>}
+      <Divider className={classes.divider} />
     </Box>
   )
 };

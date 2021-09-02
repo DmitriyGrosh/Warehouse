@@ -18,6 +18,7 @@ import DistributeProductSchema from "./DistributeProductSchema";
 
 import {createProduct} from "../../redux/actions/products";
 import {addProduct} from "../../redux/actions/warehouses";
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles({
   box: {
@@ -33,12 +34,16 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'flex-end',
     marginTop: '20px'
+  },
+  backButton: {
+    marginRight: '10px',
   }
 });
 
 const CreateProduct = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
   const {getValues, register, trigger, formState: { errors }} = useForm()
   const warehouses = useSelector(state => state.warehouse);
   const products = useSelector(state => state.products);
@@ -107,6 +112,8 @@ const CreateProduct = () => {
           }
         }))
       })
+
+      history.push('/products')
     }
   };
 
@@ -157,8 +164,11 @@ const CreateProduct = () => {
       {errorMessage && <TextError>{errorMessage}</TextError>}
       <Box className={classes.boxButtons}>
         <Button
+          variant="contained"
+          color="primary"
           disabled={activeStep === 0}
           onClick={handleBack}
+          className={classes.backButton}
         >
           Back
         </Button>
@@ -171,7 +181,11 @@ const CreateProduct = () => {
             Next
           </Button>
           :
-          <Button onClick={handleAddWarehouse} variant="outlined">
+          <Button
+            onClick={handleAddWarehouse}
+            variant="contained"
+            color="secondary"
+          >
             Add to warehouses
           </Button>
         }

@@ -97,14 +97,18 @@ const ProductList = () => {
                       Count of Products in warehouse: {element.count}
                     </Typography>
                   </ListItem>
-                  <Button onClick={() => handleModalOpen(
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => handleModalOpen(
                     {
                       element: element,
                       name: nameOfWarehouse,
                       idProduct: productInfo.idProduct,
                       nameProduct: productInfo.name
                     }
-                  )}>
+                  )}
+                  >
                     Move product to another warehouse
                   </Button>
                 </Box>
