@@ -1,7 +1,11 @@
 import {combineReducers} from "@reduxjs/toolkit";
 
 import {wareHouseReducer} from "./warehouses";
+import {productsReducer} from "./products";
+import {defaultWarehouseReducer} from "./unallocated";
 
 export const newRootReducer = combineReducers({
-  warehouse: wareHouseReducer
-})
+  products: productsReducer,
+  warehouse: wareHouseReducer,
+  unallocated: defaultWarehouseReducer
+});

@@ -1,17 +1,18 @@
 import React from 'react'
 import {
-  Button,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Paper
+  Paper,
+  Container
 } from "@material-ui/core";
 import {useSelector} from "react-redux";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import {makeStyles} from "@material-ui/core"
+import HeadName from "./assets/Typographies/HeadName";
 
 const useStyles = makeStyles({
   tableContainer: {
@@ -25,18 +26,19 @@ const useStyles = makeStyles({
 })
 
 const Warehouses = () => {
-  const classes = useStyles()
-  const warehouses = useSelector(state => state.warehouse)
-  const history = useHistory()
+  const classes = useStyles();
+  const warehouses = useSelector(state => state.warehouse);
+  const history = useHistory();
   
-  const { path } = useRouteMatch()
-  console.log('==========>path', path)
+  const { path } = useRouteMatch();
 
   const handleRedirect = (id) => {
     history.push(`${path}/warehouse${id}`)
-  }
+  };
 
   return (
+    <Container>
+      <HeadName text={'All Warehouses'} />
     <TableContainer
       className={classes.tableContainer}
       component={Paper}
@@ -60,9 +62,10 @@ const Warehouses = () => {
         </TableHead>
         <TableBody>
           {
-            warehouses?.map(e => {
+            warehouses?.map((e, i) => {
               return (
                 <TableRow
+                  key={i}
                   onClick={() => handleRedirect(e.idWareHouse)}
                   className={classes.tableRow}
                 >
@@ -85,7 +88,8 @@ const Warehouses = () => {
         </TableBody>
       </Table>
     </TableContainer>
+    </Container>
   )
-}
+};
 
 export default Warehouses;
