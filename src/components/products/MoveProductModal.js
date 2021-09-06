@@ -4,7 +4,9 @@ import {
   Button,
   Dialog,
   DialogContent,
-  DialogTitle, makeStyles, Typography
+  DialogTitle,
+  makeStyles,
+  Typography
 } from "@material-ui/core";
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
@@ -59,7 +61,7 @@ const MoveProductModal = ({onClose, open, warehouseData}) => {
       setError('')
     }
 
-    if (error) {
+    if (!error) {
       filteredWarehouses.forEach(warehouse => {
         selectedWarehouses.forEach(name => {
           if (name === warehouse.name) {
