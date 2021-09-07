@@ -3,15 +3,14 @@ import {useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {
   Box,
-  Button,
   List,
-  ListItem,
   makeStyles,
-  Typography
 } from "@material-ui/core";
 
 import MoveProductModal from "./MoveProductModal";
 import ActionMenu from "../assets/ActionMenu/ActionMenu";
+import ListInfo from "../assets/ListInfo/ListInfo";
+import ActionBoxProduct from "../assets/ActionBoxProduct/ActionBoxProduct";
 
 const useStyles = makeStyles({
   boxContainer: {
@@ -28,6 +27,7 @@ const ProductList = () => {
 
   const [open, setOpen] = useState(false);
   const [warehouseData, setWarehouseData] = useState({});
+  let nameOfWarehouse = '';
 
   const productInfo = products.find(product => {
     return product.idProduct === Number(idProduct)
@@ -55,31 +55,10 @@ const ProductList = () => {
   return (
     <Box className={classes.boxContainer}>
       <List>
-        <ListItem>
-          Name: {productInfo.name}
-        </ListItem>
-        <ListItem>
-          Total Count: {productInfo.totalCount}
-        </ListItem>
-        <ListItem>
-          Price per count: {productInfo.pricePerCount}
-        </ListItem>
-        <ListItem>
-          Width: {productInfo.width}
-        </ListItem>
-        <ListItem>
-          Height: {productInfo.height}
-        </ListItem>
-        <ListItem>
-          Length: {productInfo.length}
-        </ListItem>
-        <ListItem>
-          Product Owner: {productInfo.productOwner}
-        </ListItem>
+        <ListInfo productInfo={productInfo} />
         <Box>
           {
             productInfo.wareHouseIds.map((element, index) => {
-              let nameOfWarehouse = ''
               warehouses.forEach(warehouse => {
                 if (warehouse.idWareHouse === element.idWarehouse) {
                   nameOfWarehouse = warehouse.name
@@ -87,30 +66,12 @@ const ProductList = () => {
               })
               return (
                 <Box key={index}>
-                  <ListItem>
-                    <Typography>
-                      Name of Warehouse: {nameOfWarehouse ? nameOfWarehouse : 'unallocated'}
-                    </Typography>
-                  </ListItem>
-                  <ListItem>
-                    <Typography>
-                      Count of Products in warehouse: {element.count}
-                    </Typography>
-                  </ListItem>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => handleModalOpen(
-                    {
-                      element: element,
-                      name: nameOfWarehouse,
-                      idProduct: productInfo.idProduct,
-                      nameProduct: productInfo.name
-                    }
-                  )}
-                  >
-                    Move product to another warehouse
-                  </Button>
+                  <ActionBoxProduct
+                    productInfo={productInfo}
+                    nameOfWarehouse={nameOfWarehouse}
+                    element={element}
+                    handleModalOpen={handleModalOpen}
+                  />
                 </Box>
               )
             })
@@ -125,6 +86,6 @@ const ProductList = () => {
       /> }
     </Box>
   )
-}
+};
 
-export default ProductList
+export default ProductList;

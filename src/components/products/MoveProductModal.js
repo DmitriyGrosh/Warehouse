@@ -17,6 +17,7 @@ import TextError from "../main/TextError";
 import {moveProduct} from "../../redux/actions/products";
 import {moveProductInWarehouse} from "../../redux/actions/warehouses";
 import {removeFromUnallocated} from "../../redux/actions/unallocated";
+import {moveAddProductHook} from "../../hooks/moveProduct";
 
 const useStyles = makeStyles({
   label: {
@@ -27,6 +28,7 @@ const useStyles = makeStyles({
 const MoveProductModal = ({onClose, open, warehouseData}) => {
   const classes = useStyles()
   const warehouses = useSelector(state => state.warehouse);
+  const products = useSelector(state => state.products)
   const filteredWarehouses = warehouses.filter(warehouse => warehouse.idWareHouse !== warehouseData.element.idWarehouse);
 
   const {getValues, register, formState: { errors }} = useForm()
@@ -77,11 +79,13 @@ const MoveProductModal = ({onClose, open, warehouseData}) => {
             }
 
             if (warehouseData.name === 'unallocated') {
+              const requestOfRequest = moveAddProductHook(products, request)
               dispatch(moveProductInWarehouse(request))
               dispatch(removeFromUnallocated(request))
-              dispatch(moveProduct(request))
+              dispatch(moveProduct(requestOfRequest))
             } else {
-              dispatch(moveProduct(request))
+              const requestOfRequest = moveAddProductHook(products, request)
+              dispatch(moveProduct(requestOfRequest))
               dispatch(moveProductInWarehouse(request)) 
             }
           }
