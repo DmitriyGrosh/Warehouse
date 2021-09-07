@@ -51,42 +51,14 @@ export const productsReducer = (state = initialStateProducts, action) => {
       })
 
       return deletedWarehouses
-    case  MOVE_PRODUCT:
-      const newProductsArray = state.map(product => {
-        let counter = true
+    case MOVE_PRODUCT:
+      return state.map(product => {
         if (product.idProduct === action.value.idProduct) {
-          product.wareHouseIds.map((data, index) => {
-            if (data.idWarehouse === action.value.toIdWarehouse) {
-              data.count += action.value.countOfSend
-              counter = false
-            }
-
-            if (data.idWarehouse === action.value.fromIdWarehouse) {
-              const result = data.count - action.value.countOfSend
-              if (result === 0) {
-                product.wareHouseIds.splice(index, 1)
-              } else {
-                data.count -= action.value.countOfSend
-              }
-            }
-          })
-
-          if (counter && action.value.isDeleted) {
-            const newWarehouseId = {
-              idWarehouse: action.value.toIdWarehouse,
-              count: action.value.countOfSend
-            }
-            return {...product, wareHouseIds: [...product.wareHouseIds, newWarehouseId]}
-          } else {
-            return product
-          }
+          return action.value
         } else {
-
           return product
         }
       })
-
-      return newProductsArray
     case DELETE_PRODUCT:
       let indexOfProduct = null;
       state.forEach((product, index) => {
